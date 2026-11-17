@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cozinha Tropical — Receitas da culinária brasileira</title>
+  <meta name="description" content="Cozinha Tropical: descubra, pesquise, avalie e cadastre receitas da culinária brasileira.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍲%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="pular" href="#conteudo">Ir para o conteúdo</a>
+
+  <!-- ===== CABEÇALHO: logotipo + menu ===== -->
+  <header class="topo">
+    <div class="container topo-in">
+      <a href="#/" class="logo" aria-label="Cozinha Tropical — voltar ao início">
+        <svg viewBox="0 0 48 48" width="44" height="44" aria-hidden="true">
+          <circle cx="24" cy="24" r="22" fill="#F7C531"/>
+          <path d="M6 30c6-5 10 5 18 0s12 5 18 0v6a22 22 0 0 1-36 0z" fill="#1C6FB8"/>
+          <path d="M24 8c9 2 13 10 8 18-8-1-13-8-8-18z" fill="#1E8B4C"/>
+          <path d="M24 10c2 6 3 10 3 15" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-txt"><b>Cozinha</b> <i>Tropical</i></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu">☰ Menu</button>
+      <nav id="menu" class="menu" aria-label="Menu principal">
+        <a href="#/" data-nav="">Início</a>
+        <a href="#/todas" data-nav="todas">Todas as receitas</a>
+        <a href="#/principais" data-nav="principais">Pratos principais</a>
+        <a href="#/petiscos" data-nav="petiscos">Petiscos e lanches</a>
+        <a href="#/sobremesas" data-nav="sobremesas">Sobremesas</a>
+        <a href="#/cadastrar" data-nav="cadastrar" class="destaque-nav">+ Cadastrar receita</a>
+      </nav>
+    </div>
+    <div class="faixa" aria-hidden="true"></div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ===== PÁGINA INICIAL ===== -->
+    <section id="view-home" class="view">
+      <div class="hero">
+        <div class="container">
+          <h1>Sabores do Brasil, <span>do seu jeito</span></h1>
+          <p>Pesquise, avalie e cadastre receitas da nossa culinária.</p>
+          <form id="heroForm" class="busca" role="search">
+            <label for="heroQ" class="sr">Pesquisar receitas</label>
+            <input id="heroQ" type="search" placeholder="Busque por receita ou ingrediente. Ex.: feijão, camarão, coco…" autocomplete="off">
+            <button class="btn" type="submit">🔍 Pesquisar</button>
+          </form>
+          <p class="atalho">Tem ingredientes em casa? <a href="#/ingredientes">Veja o que dá para preparar</a></p>
+        </div>
+      </div>
+
+      <div class="container">
+        <section class="bloco">
+          <h2>Receitas em destaque</h2>
+          <div id="homeDestaques" class="grade"></div>
+        </section>
+
+        <section class="bloco">
+          <h2>Categorias</h2>
+          <div id="homeCategorias" class="categorias"></div>
+        </section>
+
+        <section class="bloco">
+          <h2>Receitas mais bem avaliadas</h2>
+          <div id="homeTop" class="grade"></div>
+          <p id="homeTopVazio" class="vazio" hidden>Ainda não há avaliações. Abra uma receita e dê a sua nota de 1 a 5 estrelas!</p>
+        </section>
+
+        <section class="bloco">
+          <h2>Classificação geral</h2>
+          <p class="sub">Da maior para a menor nota. Receitas sem avaliação aparecem em ordem alfabética.</p>
+          <ol id="homeRanking" class="ranking"></ol>
+        </section>
+
+        <section class="bloco sobre">
+          <h2>A culinária brasileira</h2>
+          <p>Do feijão-preto da feijoada ao polvilho do pão de queijo, da moqueca de leite de coco ao brigadeiro de festa de aniversário: a cozinha do Brasil reúne sabores de todas as regiões, com influências indígenas, africanas e europeias. A Cozinha Tropical é um espaço para descobrir esses pratos, guardar as suas receitas e dizer quais você mais gosta.</p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===== LISTAGEM (todas / categorias / ingredientes) ===== -->
+    <section id="view-lista" class="view" hidden>
+      <div class="container">
+        <h1 id="listaTitulo" class="titulo-pag"></h1>
+        <p id="listaSub" class="sub"></p>
+
+        <div class="ferramentas">
+          <div class="campo grande">
+            <label for="q">Pesquisar</label>
+            <input id="q" type="search" placeholder="Nome, ingrediente ou descrição" autocomplete="off">
+          </div>
+          <div class="campo">
+            <label for="ordem">Ordenar por</label>
+            <select id="ordem">
+              <option value="az">Ordem alfabética</option>
+              <option value="nota">Melhor avaliadas</option>
+              <option value="qtd">Mais avaliações</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="chipsCat" class="chips" role="group" aria-label="Filtrar por categoria"></div>
+
+        <details id="ingPainel" class="painel">
+          <summary>🧺 O que eu tenho em casa?</summary>
+          <p>Digite um ingrediente e aperte Enter. Vamos mostrar as receitas compatíveis e o que ainda falta para cada uma.</p>
+          <form id="ingForm" class="busca pequena">
+            <label for="ingInput" class="sr">Ingrediente que você tem</label>
+            <input id="ingInput" type="text" placeholder="Ex.: arroz" autocomplete="off">
+            <button class="btn" type="submit">Adicionar</button>
+          </form>
+          <div id="ingTags" class="tags"></div>
+          <button id="ingLimpar" class="btn sec" type="button" hidden>Limpar ingredientes</button>
+        </details>
+
+        <p id="contagem" class="contagem" aria-live="polite"></p>
+        <div id="grade" class="grade"></div>
+        <p id="vazio" class="vazio" hidden>Nenhuma receita encontrada. Tente outras palavras, outra categoria ou menos ingredientes.</p>
+      </div>
+    </section>
+
+    <!-- ===== CADASTRO ===== -->
+    <section id="view-cadastro" class="view" hidden>
+      <div class="container estreito">
+        <h1 class="titulo-pag">Cadastrar receita</h1>
+        <p class="sub">Preencha os campos abaixo. A receita aparece na lista e na categoria escolhida assim que você salvar.</p>
+        <form id="formCad" class="formulario" novalidate>
+          <label for="cNome">Nome da receita *</label>
+          <input id="cNome" type="text" maxlength="80" required>
+
+          <label for="cDesc">Descrição *</label>
+          <textarea id="cDesc" rows="3" maxlength="400" required></textarea>
+
+          <label for="cCat">Categoria *</label>
+          <select id="cCat" required></select>
+
+          <label for="cIng">Lista de ingredientes * <small>(um por linha)</small></label>
+          <textarea id="cIng" rows="5" required></textarea>
+
+          <label for="cPrep">Modo de preparo *</label>
+          <textarea id="cPrep" rows="6" required></textarea>
+
+          <label for="cTempo">Tempo de preparo <small>(ex.: 45 minutos)</small></label>
+          <input id="cTempo" type="text" maxlength="40">
+
+          <label for="cImg">Imagem da receita <small>(opcional)</small></label>
+          <input id="cImg" type="file" accept="image/*">
+
+          <p id="cErro" class="erro" role="alert" hidden></p>
+          <button class="btn grande-btn" type="submit">Salvar receita</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="faixa" aria-hidden="true"></div>
+    <p>🌿 Cozinha Tropical — valorizando a culinária brasileira</p>
+  </footer>
+
+  <!-- ===== DETALHES DA RECEITA ===== -->
+  <dialog id="modal" aria-labelledby="mTitulo"></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

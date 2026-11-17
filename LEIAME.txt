@@ -1,0 +1,24 @@
+COZINHA TROPICAL — como usar
+Abra o arquivo index.html em qualquer navegador moderno (não precisa de internet nem de servidor).
+
+Arquivos: index.html (estrutura) · style.css (visual) · script.js (funções) · images/ (fotos)
+
+IDENTIFICAÇÃO DAS IMAGENS (pasta images/)
+ 1. Feijoada            -> images/feijoada.jpg
+ 2. Baião de dois       -> images/baiao-de-dois.jpg   (FOTO AUSENTE: veja abaixo)
+ 3. Moqueca             -> images/moqueca.jpg
+ 4. Camarão na moranga  -> images/camarao-na-moranga.jpg
+ 5. Vaca atolada        -> images/vaca-atolada.jpg
+ 6. Arroz carreteiro    -> images/arroz-carreteiro.jpg
+ 7. Virado à paulista   -> images/virado-a-paulista.jpg
+ 8. Barreado            -> images/barreado.jpg
+ 9. Pão de queijo       -> images/pao-de-queijo.jpg
+10. Coxinha de frango   -> images/coxinha-de-frango.jpg
+11. Acarajé             -> images/acaraje.jpg
+12. Bolinho de bacalhau -> images/bolinho-de-bacalhau.jpg
+13. Brigadeiro          -> images/brigadeiro.jpg
+14. Bolo de rolo        -> images/bolo-de-rolo.jpg
+
+BAIÃO DE DOIS: o envio tinha a foto da feijoada duas vezes e nenhuma do baião de dois.
+Até a foto chegar, o site mostra uma imagem provisória. Para trocar, salve a foto como
+images/baiao-de-dois.jpg (nenhum código precisa ser alterado).
